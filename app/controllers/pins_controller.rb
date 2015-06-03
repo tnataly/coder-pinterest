@@ -8,4 +8,6 @@ class PinsController < ApplicationController
     @pin = Pin.find(params[:id])
   end
   
+
+
 end
