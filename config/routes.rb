@@ -5,9 +5,14 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'pins#index'
 
+  get 'library' => 'pins#index'  
+
+  get 'pins/name-:slug' => 'pins#show_by_name', as: 'pin_by_name'
+
   resources :pins
   
-  get 'library' => 'pins#index'  
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
