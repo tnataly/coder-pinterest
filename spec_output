@@ -1,0 +1,210 @@
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.9ms)[0m  ALTER TABLE "categories" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "pins" DISABLE TRIGGER ALL
+  [1m[36m (7.2ms)[0m  [1m          SELECT schemaname || '.' || tablename
+          FROM pg_tables
+          WHERE 
+            tablename !~ '_prt_' AND 
+            tablename <> 'schema_migrations' AND 
+            schemaname = ANY (current_schemas(false))
+[0m
+  [1m[35m (1.1ms)[0m  select table_name from information_schema.views where table_schema = 'coder-pinterest_test'
+  [1m[36m (18.0ms)[0m  [1mTRUNCATE TABLE "public"."categories", "public"."pins" RESTART IDENTITY CASCADE;[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "categories" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "pins" ENABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "categories" ("name") VALUES ($1) RETURNING "id"  [["name", "ruby"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "categories" ("name") VALUES ($1) RETURNING "id"[0m  [["name", "rails"]]
+  [1m[35m (1.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "categories" ("name") VALUES ($1) RETURNING "id"  [["name", "unknown"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mPin Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "pins" WHERE "pins"."slug" = 'rails-tutorial' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "pins" ("title", "url", "text", "slug", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["title", "Rails Tutorial"], ["url", "https://www.railstutorial.org/"], ["text", "The trusted standard in self-directed introductions to Ruby on Rails. A complete treatment of all the essentials\n    required in most production Rails applications."], ["slug", "rails-tutorial"], ["category_id", 0]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mPin Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "pins" WHERE "pins"."slug" = 'rails-for-zombies' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "pins" ("title", "url", "text", "slug", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["title", "Rails for Zombies"], ["url", "http://railsforzombies.org"], ["text", "A fun, gamified way to hone your Rails skills! Come on...who doesn't like fighting zombies?!"], ["slug", "rails-for-zombies"], ["category_id", 0]]
+  [1m[36m (1.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mPin Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "pins" WHERE "pins"."slug" = 'try-ruby' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "pins" ("title", "url", "text", "slug", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["title", "Try Ruby"], ["url", "http://tryruby.org/"], ["text", "An interactive, in-browser tutorial for the Ruby programming language. A thorough walkthrough of \n    Ruby's nuances, geared toward beginners."], ["slug", "try-ruby"], ["category_id", 0]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mPin Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "pins" WHERE "pins"."slug" = 'ruby-quiz' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "pins" ("title", "url", "text", "slug", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["title", "Ruby Quiz"], ["url", "http://rubyquiz.org"], ["text", "A collection of quizzes on the Ruby programming language."], ["slug", "ruby-quiz"], ["category_id", 0]]
+  [1m[36m (1.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mPin Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "pins" WHERE "pins"."slug" = 'ga-ror-for-developers' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "pins" ("title", "url", "text", "slug", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["title", "Ruby on Rails for Developers"], ["url", "https://github.com/generalassembly/ga-ruby-on-rails-for-devs"], ["text", "Somewhat advanced curriculum, but the exercises are also good for anyone who is motivated and \n    self-guided with experience."], ["slug", "ga-ror-for-developers"], ["category_id", 0]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mPin Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "pins" WHERE "pins"."slug" = 'ruby-monk' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "pins" ("title", "url", "text", "slug", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["title", "Ruby Monk"], ["url", "http://rubymonk.com"], ["text", "The Ruby Primer is a free interactive book that helps you learn Ruby. Discover Ruby idioms, learn \n    lessons and solve problems, all in your browser!"], ["slug", "ruby-monk"], ["category_id", 0]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Processing by PinsController#index as HTML
+  Rendered pins/index.erb within layouts/application (0.3ms)
+Completed 200 OK in 17ms (Views: 16.0ms | ActiveRecord: 0.0ms)
+.Processing by PinsController#index as HTML
+  Rendered pins/index.erb within layouts/application (0.2ms)
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.0ms)
+.Processing by PinsController#new as HTML
+  Rendered pins/new.erb within layouts/application (0.3ms)
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.0ms)
+.Processing by PinsController#new as HTML
+  Rendered pins/new.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.0ms)
+.Processing by PinsController#new as HTML
+  Rendered pins/new.erb within layouts/application (0.3ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+.Processing by PinsController#create as HTML
+  Parameters: {"pin"=>{"title"=>"Rails Wizard", "url"=>"http://railswizard.org", "slug"=>"rails-wizard", "text"=>"A fun and helpful Rails Resource", "category_id"=>"rails"}}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mPin Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "pins" WHERE "pins"."slug" = 'rails-wizard' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "pins" ("title", "url", "slug", "text", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["title", "Rails Wizard"], ["url", "http://railswizard.org"], ["slug", "rails-wizard"], ["text", "A fun and helpful Rails Resource"], ["category_id", 0]]
+  [1m[36m (2.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mPin Exists (4.8ms)[0m  SELECT  1 AS one FROM "pins" WHERE ("pins"."slug" = 'rails-wizard' AND "pins"."id" != 7) LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mPin Exists (0.3ms)[0m  SELECT  1 AS one FROM "pins" WHERE ("pins"."slug" = 'rails-wizard' AND "pins"."id" != 7) LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Redirected to http://test.host/pins/name-rails-wizard
+Completed 302 Found in 18ms (ActiveRecord: 8.3ms)
+  [1m[35mPin Load (0.3ms)[0m  SELECT  "pins".* FROM "pins" WHERE "pins"."slug" = $1 LIMIT 1  [["slug", "rails-wizard"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  DELETE FROM "pins" WHERE "pins"."id" = $1  [["id", 7]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+.Processing by PinsController#create as HTML
+  Parameters: {"pin"=>{"title"=>"Rails Wizard", "url"=>"http://railswizard.org", "slug"=>"rails-wizard", "text"=>"A fun and helpful Rails Resource", "category_id"=>"rails"}}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mPin Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "pins" WHERE "pins"."slug" = 'rails-wizard' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "pins" ("title", "url", "slug", "text", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["title", "Rails Wizard"], ["url", "http://railswizard.org"], ["slug", "rails-wizard"], ["text", "A fun and helpful Rails Resource"], ["category_id", 0]]
+  [1m[36m (2.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mPin Exists (0.4ms)[0m  SELECT  1 AS one FROM "pins" WHERE ("pins"."slug" = 'rails-wizard' AND "pins"."id" != 8) LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mPin Exists (0.4ms)[0m  SELECT  1 AS one FROM "pins" WHERE ("pins"."slug" = 'rails-wizard' AND "pins"."id" != 8) LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Redirected to http://test.host/pins/name-rails-wizard
+Completed 302 Found in 11ms (ActiveRecord: 3.9ms)
+  [1m[35mPin Load (2.2ms)[0m  SELECT  "pins".* FROM "pins" WHERE "pins"."slug" = $1 LIMIT 1  [["slug", "rails-wizard"]]
+  [1m[36mPin Load (0.3ms)[0m  [1mSELECT  "pins".* FROM "pins" WHERE "pins"."slug" = $1 LIMIT 1[0m  [["slug", "rails-wizard"]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "pins" WHERE "pins"."id" = $1[0m  [["id", 8]]
+  [1m[35m (1.2ms)[0m  COMMIT
+.Processing by PinsController#create as HTML
+  Parameters: {"pin"=>{"title"=>"Rails Wizard", "url"=>"http://railswizard.org", "slug"=>"rails-wizard", "text"=>"A fun and helpful Rails Resource", "category_id"=>"rails"}}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mPin Exists (0.4ms)[0m  SELECT  1 AS one FROM "pins" WHERE "pins"."slug" = 'rails-wizard' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "pins" ("title", "url", "slug", "text", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Rails Wizard"], ["url", "http://railswizard.org"], ["slug", "rails-wizard"], ["text", "A fun and helpful Rails Resource"], ["category_id", 0]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36mPin Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "pins" WHERE ("pins"."slug" = 'rails-wizard' AND "pins"."id" != 9) LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mPin Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "pins" WHERE ("pins"."slug" = 'rails-wizard' AND "pins"."id" != 9) LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+Redirected to http://test.host/pins/name-rails-wizard
+Completed 302 Found in 12ms (ActiveRecord: 3.4ms)
+  [1m[36mPin Load (0.3ms)[0m  [1mSELECT  "pins".* FROM "pins" WHERE "pins"."slug" = $1 LIMIT 1[0m  [["slug", "rails-wizard"]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "pins" WHERE "pins"."id" = $1[0m  [["id", 9]]
+  [1m[35m (1.0ms)[0m  COMMIT
+.Processing by PinsController#create as HTML
+  Parameters: {"pin"=>{"url"=>"http://railswizard.org", "slug"=>"rails-wizard", "text"=>"A fun and helpful Rails Resource", "category_id"=>"rails"}}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mPin Exists (0.4ms)[0m  SELECT  1 AS one FROM "pins" WHERE "pins"."slug" = 'rails-wizard' LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35mPin Exists (0.4ms)[0m  SELECT  1 AS one FROM "pins" WHERE "pins"."slug" = 'rails-wizard' LIMIT 1
+  Rendered pins/new.erb within layouts/application (0.3ms)
+Completed 200 OK in 27ms (Views: 1.1ms | ActiveRecord: 1.3ms)
+  [1m[36mPin Load (0.4ms)[0m  [1mSELECT  "pins".* FROM "pins" WHERE "pins"."slug" = $1 LIMIT 1[0m  [["slug", "rails-wizard"]]
+.Processing by PinsController#create as HTML
+  Parameters: {"pin"=>{"url"=>"http://railswizard.org", "slug"=>"rails-wizard", "text"=>"A fun and helpful Rails Resource", "category_id"=>"rails"}}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mPin Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "pins" WHERE "pins"."slug" = 'rails-wizard' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mPin Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "pins" WHERE "pins"."slug" = 'rails-wizard' LIMIT 1[0m
+  Rendered pins/new.erb within layouts/application (0.4ms)
+Completed 200 OK in 10ms (Views: 1.7ms | ActiveRecord: 1.6ms)
+  [1m[35mPin Load (0.4ms)[0m  SELECT  "pins".* FROM "pins" WHERE "pins"."slug" = $1 LIMIT 1  [["slug", "rails-wizard"]]
+.  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mPin Exists (0.3ms)[0m  SELECT  1 AS one FROM "pins" WHERE "pins"."slug" = 'ruby-hard' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "pins" ("title", "url", "text", "slug", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Learn RUBY hard way"], ["url", "http://google.com"], ["text", "Some super text"], ["slug", "ruby-hard"], ["category_id", 0]]
+  [1m[35m (1.2ms)[0m  COMMIT
+Processing by PinsController#edit as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mPin Load (0.4ms)[0m  [1mSELECT  "pins".* FROM "pins" WHERE "pins"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  Rendered pins/edit.erb within layouts/application (0.5ms)
+Completed 200 OK in 5ms (Views: 2.9ms | ActiveRecord: 0.4ms)
+  [1m[35mPin Load (0.4ms)[0m  SELECT  "pins".* FROM "pins" WHERE "pins"."slug" = $1 LIMIT 1  [["slug", "ruby-hard"]]
+  [1m[36mSQL (2.0ms)[0m  [1mDELETE FROM "pins" WHERE "pins"."id" = $1[0m  [["id", 10]]
+.  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mPin Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "pins" WHERE "pins"."slug" = 'ruby-hard' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "pins" ("title", "url", "text", "slug", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["title", "Learn RUBY hard way"], ["url", "http://google.com"], ["text", "Some super text"], ["slug", "ruby-hard"], ["category_id", 0]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+Processing by PinsController#edit as HTML
+  Parameters: {"id"=>"11"}
+  [1m[35mPin Load (0.4ms)[0m  SELECT  "pins".* FROM "pins" WHERE "pins"."id" = $1 LIMIT 1  [["id", 11]]
+  Rendered pins/edit.erb within layouts/application (0.2ms)
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.4ms)
+  [1m[36mPin Load (0.3ms)[0m  [1mSELECT  "pins".* FROM "pins" WHERE "pins"."slug" = $1 LIMIT 1[0m  [["slug", "ruby-hard"]]
+  [1m[35mSQL (1.1ms)[0m  DELETE FROM "pins" WHERE "pins"."id" = $1  [["id", 11]]
+.  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mPin Exists (0.4ms)[0m  SELECT  1 AS one FROM "pins" WHERE "pins"."slug" = 'ruby-hard' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "pins" ("title", "url", "text", "slug", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Learn RUBY hard way"], ["url", "http://google.com"], ["text", "Some super text"], ["slug", "ruby-hard"], ["category_id", 0]]
+  [1m[35m (1.0ms)[0m  COMMIT
+Processing by PinsController#edit as HTML
+  Parameters: {"id"=>"12"}
+  [1m[36mPin Load (0.4ms)[0m  [1mSELECT  "pins".* FROM "pins" WHERE "pins"."id" = $1 LIMIT 1[0m  [["id", 12]]
+  Rendered pins/edit.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.0ms | ActiveRecord: 0.4ms)
+  [1m[35mPin Load (0.3ms)[0m  SELECT  "pins".* FROM "pins" WHERE "pins"."slug" = $1 LIMIT 1  [["slug", "ruby-hard"]]
+  [1m[36mSQL (1.6ms)[0m  [1mDELETE FROM "pins" WHERE "pins"."id" = $1[0m  [["id", 12]]
+.  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mPin Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "pins" WHERE "pins"."slug" = 'ruby-hard' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "pins" ("title", "url", "text", "slug", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["title", "Learn RUBY hard way"], ["url", "http://google.com"], ["text", "Some super text"], ["slug", "ruby-hard"], ["category_id", 0]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+Processing by PinsController#update as HTML
+  Parameters: {"pin"=>{"title"=>"Learn Rails", "url"=>"New url", "text"=>"The new text", "slug"=>"ruby-hard"}, "id"=>"13"}
+  [1m[35mPin Load (0.6ms)[0m  SELECT  "pins".* FROM "pins" WHERE "pins"."id" = $1 LIMIT 1  [["id", 13]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mPin Exists (0.4ms)[0m  SELECT  1 AS one FROM "pins" WHERE ("pins"."slug" = 'ruby-hard' AND "pins"."id" != 13) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "pins" SET "title" = $1, "url" = $2, "text" = $3 WHERE "pins"."id" = $4[0m  [["title", "Learn Rails"], ["url", "New url"], ["text", "The new text"], ["id", 13]]
+  [1m[35m (1.1ms)[0m  COMMIT
+Redirected to http://test.host/pins/13
+Completed 302 Found in 10ms (ActiveRecord: 2.6ms)
+  [1m[36mPin Load (0.6ms)[0m  [1mSELECT  "pins".* FROM "pins" WHERE "pins"."id" = $1 LIMIT 1[0m  [["id", 13]]
+===================
+<html><body>You are being <a href="http://test.host/pins/13">redirected</a>.</body></html>
+.Processing by PinsController#update as HTML
+  Parameters: {"pin"=>{"title"=>"Learn Rails", "url"=>"New url", "text"=>"The new text", "slug"=>"ruby-hard"}, "id"=>"13"}
+  [1m[35mPin Load (0.4ms)[0m  SELECT  "pins".* FROM "pins" WHERE "pins"."id" = $1 LIMIT 1  [["id", 13]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mPin Exists (0.5ms)[0m  SELECT  1 AS one FROM "pins" WHERE ("pins"."slug" = 'ruby-hard' AND "pins"."id" != 13) LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Redirected to http://test.host/pins/13
+Completed 302 Found in 6ms (ActiveRecord: 1.3ms)
+  [1m[35mPin Load (0.3ms)[0m  SELECT  "pins".* FROM "pins" WHERE "pins"."id" = $1 LIMIT 1  [["id", 13]]
+===================
+<html><body>You are being <a href="http://test.host/pins/13">redirected</a>.</body></html>
+.Processing by PinsController#update as HTML
+  Parameters: {"pin"=>{"title"=>"", "url"=>"", "text"=>"The new text", "slug"=>"ruby-hard"}, "id"=>"13"}
+  [1m[36mPin Load (0.4ms)[0m  [1mSELECT  "pins".* FROM "pins" WHERE "pins"."id" = $1 LIMIT 1[0m  [["id", 13]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mPin Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "pins" WHERE ("pins"."slug" = 'ruby-hard' AND "pins"."id" != 13) LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  Rendered pins/edit.erb within layouts/application (0.2ms)
+Completed 200 OK in 9ms (Views: 1.0ms | ActiveRecord: 1.4ms)
+  [1m[36mPin Load (0.6ms)[0m  [1mSELECT  "pins".* FROM "pins" WHERE "pins"."id" = $1 LIMIT 1[0m  [["id", 13]]
+.Processing by PinsController#update as HTML
+  Parameters: {"pin"=>{"title"=>"", "url"=>"", "text"=>"The new text", "slug"=>"ruby-hard"}, "id"=>"13"}
+  [1m[35mPin Load (0.3ms)[0m  SELECT  "pins".* FROM "pins" WHERE "pins"."id" = $1 LIMIT 1  [["id", 13]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mPin Exists (1.1ms)[0m  SELECT  1 AS one FROM "pins" WHERE ("pins"."slug" = 'ruby-hard' AND "pins"."id" != 13) LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  Rendered pins/edit.erb within layouts/application (0.2ms)
+Completed 200 OK in 8ms (Views: 1.1ms | ActiveRecord: 1.7ms)
+  [1m[35mPin Load (0.3ms)[0m  SELECT  "pins".* FROM "pins" WHERE "pins"."id" = $1 LIMIT 1  [["id", 13]]
+.
+
+Finished in 0.47166 seconds (files took 4.22 seconds to load)
+17 examples, 0 failures
+

@@ -1,0 +1,42 @@
+<%= form_for(@pin, html: {class: "form-horizontal"}) do |f| %>
+ <fieldset>
+  <legend> Check Pin's data, please  </legend>
+  <div class = "form-group">
+    <div class = "col-md-2"> <%= f.label(:title, "Title", html: {class: "control-label"}) %> </div>
+    <%= f.text_field(:title, value: @pin.title, html: {class: "form-control col-md-7"}) %>
+  </div>
+
+  <div class = "form-group">
+    <div class = "col-md-2"> <%= f.label(:title, "Image", html: {class: "control-label"}) %> </div>
+    <%= f.file_field(:image, html: {class: "form-control col-md-7"}) %>
+  </div>
+  
+  <div class = "form-group">  
+    <div class = "col-md-2"> <label for="pin_category__id" class: "control-label">Category</label> </div>
+    <%= f.collection_select(:category_id, Category.all, :id, :name, value: @pin.category, html: "form-control") %>
+  </div>
+  
+  <div class = "form-group">    
+    <div class = "col-md-2"><label for="pin_text">Description</label></div>
+    <%= f.text_area(:text, value: @pin.text) %>
+  </div>
+
+  <div class = "form-group">
+    <div class = "col-md-2"> <label for="pin_url">URL</label></div>
+    <%= f.text_field :url, value: @pin.url %>
+  </div>
+
+  <div class = "form-group">    
+    <div class = "col-md-2"><label for="pin_slug">Slug</label></div>
+    <%= f.text_field :slug, value: @pin.slug %>
+  </div>
+  
+  <div class = "form-group"> 
+    <a href="/" class="btn btn-default">
+      <i class="fa fa-hand-o-left"></i>
+      Back to Home
+      </a>
+    <%= f.submit(class: "btn btn-danger") %>
+  </div>
+ </fieldset>
+<% end %>

@@ -29,6 +29,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Puma as the web server
 gem 'puma'
 
+# Use for image manipulation. Requires ImageMagick
+gem 'paperclip'
+
+# For Amazon ASW
+gem 'aws-sdk', '< 2.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

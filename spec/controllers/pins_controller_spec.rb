@@ -138,15 +138,18 @@ RSpec.describe PinsController do
 		end
 
       it 'updates a pin' do
+        puts "===================\n" + response.body        
         expect(@pin.title).to eql attr[:title] 
         expect(@pin.url).to eql attr[:url]
         expect(@pin.text).to eql attr[:text]
         expect(@pin.slug).to eql attr[:slug]
-        #puts "===================\n" + response.body
+
      end
     
       it 'redirects to the show view' do
+          puts "===================\n" + response.body        
           expect(response).to redirect_to(pin_path(assigns(:pin)))
+
       end
     end
 

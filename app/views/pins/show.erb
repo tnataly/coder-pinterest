@@ -7,7 +7,9 @@
 
 <div class="show-pin">
   <p><%= "#{@pin.text}" %></p>
-
+  <% unless @pin.image_file_name.nil? %>
+    <p><%= image_tag @pin.image.url(:medium) %></p>
+  <% end %>
   <hr/>
   <p>
     <b>Visit <%= "#{@pin.title}" %> at: </b>
