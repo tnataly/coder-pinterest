@@ -1,0 +1,11 @@
+<% unless @errors.nil? %>
+  <div class="alert alert-dismissible alert-danger">
+    <label> 
+    	Error prohibited this user from login: 
+    </label>
+	<ul>
+		<li> <%= @errors %> </li>
+	</ul>
+
+  </div>
+<% end %>

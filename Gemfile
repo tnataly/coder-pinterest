@@ -23,9 +23,6 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
 # Use Puma as the web server
 gem 'puma'
 
@@ -35,23 +32,30 @@ gem 'paperclip'
 # For Amazon ASW
 gem 'aws-sdk', '< 2.0'
 
+# Use ActiveModel has_secure_password 
+gem 'bcrypt', '~> 3.1.7'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :development, :test do
+group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'database_cleaner'
 end
 
-gem 'rspec'
-gem 'rspec-rails'
+group :test do
+	gem 'shoulda-matchers'
+	gem 'spring'
+	gem 'database_cleaner'
+	gem 'rspec'
+	gem 'rspec-rails'
+	gem 'factory_girl_rails'
+end
+
 
 #Log to stdout instead of a log file and Deliver assets in the same way in production and development
 gem 'rails_12factor'

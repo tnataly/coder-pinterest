@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'signup' => "users#new", as: 'signup'
+  get 'login' => "users#login", as: 'login'  
+  post '/login' => "users#authenticate"
+  resources :users, except: [:index]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -11,6 +16,7 @@ Rails.application.routes.draw do
 
   resources :pins
   
+
 
 
   # Example of regular route:

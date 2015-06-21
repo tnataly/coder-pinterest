@@ -147,7 +147,7 @@ RSpec.describe PinsController do
      end
     
       it 'redirects to the show view' do
-          puts "===================\n" + response.body        
+          #puts "===================\n" + response.body        
           expect(response).to redirect_to(pin_path(assigns(:pin)))
 
       end

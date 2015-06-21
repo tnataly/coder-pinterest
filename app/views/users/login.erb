@@ -1,0 +1,28 @@
+<h1>Login</h1>
+
+<%= render "errors_display" %>
+
+<%= form_tag "/login" do |f| %>
+<fieldset>
+  <legend> Enter your login data, please </legend>
+  <div class = "form-group row">
+    <div class = "col-md-2"> <%= label(:title, "Email", html: {class: "control-label"}) %> </div>
+    <div class = "col-md-7"> <%= text_field_tag(:email) %> </div>
+  </div>
+
+   <div class = "form-group row">
+   <div class = "col-md-2"> <%= label(:title, "Password", html: {class: "control-label"}) %> </div>
+   <div class = "col-md-7"> <%= text_field_tag(:password) %> </div> 
+  </div>
+
+   <div class = "form-group row"> 
+    <a href="/" class="btn btn-default">
+      <i class="fa fa-hand-o-left"></i>
+      Back to Home
+      </a>
+    <%= submit_tag(value = "Login", class: "btn btn-danger") %>
+  </div>
+
+
+ </fieldset>  
+<% end %>
