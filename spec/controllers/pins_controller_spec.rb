@@ -1,5 +1,15 @@
 require 'spec_helper'
 RSpec.describe PinsController do
+  before(:each) do
+    @user = FactoryGirl.create(:user)
+    login(@user)
+  end
+
+  after(:each) do
+    unless @user.destroyed?
+      @user.destroy
+    end
+  end
 
 	describe "GET index" do
 		it 'renders the index template' do
@@ -8,9 +18,15 @@ RSpec.describe PinsController do
 		end
 		it 'populate @pins with all the pins in the database' do
 			get :index
-			expect(assigns[:pins]).to eq(Pin.all)
+			expect(assigns[:pins]).to eq(Pin.where("user_id=?",@user.id))
 		end
+    it 'can\'t be accessed when a user is not logged in' do
+      logout(@user)
+      get :index
+      expect(response).to redirect_to(:login)
+    end
 	end
+
   describe "GET new" do
     it 'responds with successfully' do
       get :new
@@ -26,6 +42,13 @@ RSpec.describe PinsController do
       get :new
       expect(assigns(:pin)).to be_a_new(Pin)
     end
+    
+    it 'can\'t be accessed when a user is not logged in' do
+      logout(@user)
+      get :new
+      expect(response).to redirect_to(:login)
+    end
+
   end
   
   describe "POST create" do
@@ -79,6 +102,12 @@ RSpec.describe PinsController do
       expect(assigns[:errors].present?).to be(true)
     end    
     
+    it 'can\'t be accessed when a user is not logged in' do
+      logout(@user)
+      post :create, pin: @pin_hash
+      expect(response).to redirect_to(:login)
+    end
+
   end
 
   describe "GET /pins/:id/edit" do
@@ -112,6 +141,12 @@ RSpec.describe PinsController do
       expect(assigns(:pin)).to eq(@pin)
     end
 
+    it 'can\'t be accessed when a user is not logged in' do
+      logout(@user)
+      get :edit, id: @pin.id
+      expect(response).to redirect_to(:login)
+    end
+
   end
 
   describe "PUT update" do  
@@ -122,6 +157,12 @@ RSpec.describe PinsController do
         	slug: "ruby-hard",
         	category_id: "ruby") 
 		end
+
+    it 'can\'t be accessed when a user is not logged in' do
+      logout(@user)
+      put :update, :id => @pin.id, :pin => {title: "111"}
+      expect(response).to redirect_to(:login)
+    end
 
   	context "request to /pins with valid parameters" do
 		let(:attr) do

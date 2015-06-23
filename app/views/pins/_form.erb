@@ -1,6 +1,7 @@
 <%= form_for(@pin, html: {class: "form-horizontal"}) do |f| %>
  <fieldset>
   <legend> Check Pin's data, please  </legend>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <div class = "form-group">
     <div class = "col-md-2"> <%= f.label(:title, "Title", html: {class: "control-label"}) %> </div>
     <%= f.text_field(:title, value: @pin.title, html: {class: "form-control col-md-7"}) %>
