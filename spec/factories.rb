@@ -16,13 +16,21 @@ FactoryGirl.define do
 	
 	factory :user do
 		sequence(:email) { |n| "coder#{n}@skillcrush.com" }
-		first_name "skillcrush"
+		first_name "Janny"
 		last_name "Coder"
 		password "secret"
 
 		after(:create) do |user|
-			create_list(:pin, 3)
+			3.times do
+	
+				user.pinnings.create(pin: FactoryGirl.create(:pin))
+			end
 		end
 	end
+
+	factory :pinning do
+		pin
+		user
+	end	
 	
 end

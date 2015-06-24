@@ -1,24 +1,42 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+<div class="header">
+  <h1>Your Pins</h1>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
+</div>
+<hr />
+<div class="pins">
+  <% @pins.each_slice(3) do |row| %>
+    <div class="row">
+      <% row.each do |pin| %>      
+        <div class="pin-container col-md-4">
+          <div class="pin">
+            <div class="pin-header row">
+              <div class="logo-thumbnail col-xs-3">
+                  <% if pin.image_file_name.nil? %>
+                      <% if "#{pin.category.name}" == "rails" %>
+                      <%= image_tag('rails-logo-thumbnail.png') %>
+                    <% elsif "#{pin.category.name}" == "ruby" %>
+                      <%= image_tag('ruby-logo-thumbnail.png') %>
+                    <% end %>      
+                  <% else %>
+                   <%= image_tag pin.image.url(:thumb) %>
+                  <% end %>
+              </div>
+              <div class="col-xs-9">
+                <h4>
+                  <%= link_to "#{pin.title}", pin_by_name_path(slug: pin.slug), html_options = {target: "_blank", class: "url"} %>
+                </h4>
+                  <%= link_to "#{pin.url}", "#{pin.url}", html_options = {target: "_blank", class: "url"} %>
+              </div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+            </div>
+            <hr/>
+            <p class="text"><%= "#{pin.text}" %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<hr />

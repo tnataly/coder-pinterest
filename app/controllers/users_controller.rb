@@ -11,6 +11,14 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    #User.first.pinnings.first.pin
+    @pins = Pin.joins(:pinnings).where(pinnings: {user_id: current_user.id})
+
+    #@pins = Pin::ActiveRecord_Relation
+    #current_user.pinnings.each do |pinning|
+    #  @pins(pinning.pin)
+    #end
+    #return @pins
   end
 
   # GET /users/new

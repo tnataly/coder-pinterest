@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623064932) do
+ActiveRecord::Schema.define(version: 20150624055623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 20150623064932) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
   end
+
+  create_table "pinnings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "pin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "pinnings", ["pin_id"], name: "index_pinnings_on_pin_id", using: :btree
+  add_index "pinnings", ["user_id"], name: "index_pinnings_on_user_id", using: :btree
 
   create_table "pins", force: :cascade do |t|
     t.string   "title"
@@ -45,5 +55,7 @@ ActiveRecord::Schema.define(version: 20150623064932) do
     t.string   "password_digest"
   end
 
+  add_foreign_key "pinnings", "pins"
+  add_foreign_key "pinnings", "users"
   add_foreign_key "pins", "users"
 end

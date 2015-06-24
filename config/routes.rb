@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'library' => 'pins#index'  
 
   get 'pins/name-:slug' => 'pins#show_by_name', as: 'pin_by_name'
+  post 'pins/repin/:id' => "pins#repin", as: 'repin'
 
   resources :pins
   

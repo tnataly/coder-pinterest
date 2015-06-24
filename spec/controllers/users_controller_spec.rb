@@ -25,6 +25,7 @@ RSpec.describe UsersController, type: :controller do
   end
 
   after(:each) do
+
     @user.destroy
   end
 

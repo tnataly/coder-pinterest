@@ -3,9 +3,25 @@
     <i class="fa fa-laptop"></i>
     <%= "#{@pin.title}" %>
   </h1>
+<br/>
+<a href="/">
+  <i class="fa fa-hand-o-left"></i>
+  Back to Home
+</a>
+  | 
+<%= link_to edit_pin_path(@pin.id) do %>
+    <i class="fa fa-pencil-square-o"></i>
+    Edit
+  <%end %>
+  |
+<%= link_to repin_path(@pin.id), class: "btn btn-info", method: "post" do %>
+    <i class="fa fa-thumb-tack"></i>
+    Repin
+  <%end %>  
 </div>
 
-<div class="show-pin">
+<div class="row">
+<div class="show-pin col-md-8">
   <p><%= "#{@pin.text}" %></p>
   <% unless @pin.image_file_name.nil? %>
     <p><%= image_tag @pin.image.url(:medium) %></p>
@@ -16,12 +32,23 @@
     <%= link_to "#{@pin.url}", "#{@pin.url}", html_options = {target: "_blank", class: "url"} %>
   </p>
 </div>
-<br/>
-<a href="/">
-  <i class="fa fa-hand-o-left"></i>
-  Back to Home
-</a>
-<%= link_to edit_pin_path(@pin.id) do %>
-    <i class="fa fa-pencil-square-o"></i>
-    Edit
-  <%end %>
+<div class="panel panel-info col-md-4">
+    <div class="panel-heading">
+      <h3 class="panel-title">This pin has been pinned by
+        <%= "#{@users.count} users" %>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <% @users.each do |user| %>
+          <li> <%= user.first_name + " " + user.last_name %> </li>
+        <% end %>
+      </ul>
+    </div>
+</div>
+</div>
+
+</div>
+<div class="row">
+
+</div>

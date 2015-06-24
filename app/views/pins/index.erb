@@ -21,11 +21,17 @@
                    <%= image_tag pin.image.url(:thumb) %>
                   <% end %>
               </div>
-              <div class="col-xs-9">
+              <div class="col-xs-7">
                 <h4>
                   <%= link_to "#{pin.title}", pin_by_name_path(slug: pin.slug), html_options = {target: "_blank", class: "url"} %>
                 </h4>
                   <%= link_to "#{pin.url}", "#{pin.url}", html_options = {target: "_blank", class: "url"} %>
+              </div>
+              <div class="col-xs-2">
+                <%= link_to repin_path(pin.id), class: "btn btn-info", method: "post" do %>
+                  <i class="fa fa-thumb-tack"></i>
+                <%end %>
+
               </div>
             </div>
             <hr/>

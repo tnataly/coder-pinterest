@@ -18,7 +18,7 @@ RSpec.describe PinsController do
 		end
 		it 'populate @pins with all the pins in the database' do
 			get :index
-			expect(assigns[:pins]).to eq(Pin.where("user_id=?",@user.id))
+			expect(assigns[:pins]).to eq(Pin.all)
 		end
     it 'can\'t be accessed when a user is not logged in' do
       logout(@user)
@@ -220,6 +220,37 @@ RSpec.describe PinsController do
 			expect(response).to render_template(:edit)
 		end
 	end
+
+  end
+
+  describe "POST /pins/repin/:id" do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      login(@user)
+      @pin = FactoryGirl.create(:pin)
+
+      post :repin, id: @pin.id
+    end
+
+    after(:each) do
+      pin = Pin.find_by_slug("rails-wizard")
+      unless pin.nil?
+        pin.destroy
+      end
+      logout(@user)
+    end 
+
+    it "responds with a redirect" do
+      expect(response).to have_http_status(:redirect)
+    end
+
+    it "creates a pinning (the pin is now in the user's pins)" do 
+      expect(@user.pins).to include(@pin)
+    end
+
+    it "redirects to the user show page" do
+      expect(response).to redirect_to(user_path(assigns(:user)))
+    end
 
   end
 

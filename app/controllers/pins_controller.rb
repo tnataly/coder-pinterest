@@ -2,15 +2,20 @@ class PinsController < ApplicationController
   before_action :require_login, except: [:show, :show_by_name]
 
   def index
-    @pins = Pin.where("user_id=?", current_user.id)
+    @pins = Pin.all
+
   end
   
   def show
     @pin = Pin.find(params[:id])
+    @users = User.joins(:pinnings).where(pinnings: {pin_id: @pin.id})
   end
-  
+      
   def show_by_name
   	@pin = Pin.find_by_slug(params[:slug])
+    # or just simpler: @user = @pin.users
+    @users = User.joins(:pinnings).where(pinnings: {pin_id: @pin.id}) 
+
   	render :show
   end
 
@@ -43,6 +48,12 @@ class PinsController < ApplicationController
       @errors = @pin.errors
       render action: 'edit'
    end
+  end
+
+  def repin
+    @pin = Pin.find(params[:id])
+    @pin.pinnings.create(user: current_user)
+    redirect_to user_path(current_user)
   end
 
 private 
