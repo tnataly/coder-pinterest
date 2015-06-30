@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :boards
+
   get 'signup' => "users#new", as: 'signup'
   get 'login' => "users#login", as: 'login'  
   post '/login' => "users#authenticate"

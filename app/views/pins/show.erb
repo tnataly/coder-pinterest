@@ -4,20 +4,7 @@
     <%= "#{@pin.title}" %>
   </h1>
 <br/>
-<a href="/">
-  <i class="fa fa-hand-o-left"></i>
-  Back to Home
-</a>
-  | 
-<%= link_to edit_pin_path(@pin.id) do %>
-    <i class="fa fa-pencil-square-o"></i>
-    Edit
-  <%end %>
-  |
-<%= link_to repin_path(@pin.id), class: "btn btn-info", method: "post" do %>
-    <i class="fa fa-thumb-tack"></i>
-    Repin
-  <%end %>  
+
 </div>
 
 <div class="row">
@@ -45,10 +32,22 @@
         <% end %>
       </ul>
     </div>
+    <div class="panel-footer">
+        <%= link_to root_path, html_options = {class: "btn"} do %>
+            <i class="fa fa-hand-o-left"></i> Back
+        <% end %>
+
+        <%= link_to edit_pin_path(@pin.id), html_options = {class: "btn"} do %>
+            <i class="fa fa-pencil-square-o"></i> Edit
+        <% end %>
+
+      <%= render partial: "shared/repin_form", locals: {pin: @pin} %>
+
+    </div>
 </div>
 </div>
 
 </div>
 <div class="row">
-
+ 
 </div>

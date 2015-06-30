@@ -31,11 +31,24 @@
     <div class = "col-md-2"><label for="pin_slug">Slug</label></div>
     <%= f.text_field :slug, value: @pin.slug %>
   </div>
+
+  <div class = "form-group">
+   <div class = "col-md-2"> <label for="pinning_board_id">Board</label></div>  
+    <%= f.fields_for(:pinnings, Pinning.new) do |p| %>
+
+          <% # value: @pin.pinnings.find_by_user_id(current_user.id).board %>
+      <%= p.collection_select(:board_id, current_user.boards, :id, :name ) %> 
+
+
+      <%= p.hidden_field :user_id, value: current_user.id %> 
+      <%= p.hidden_field :pin_id, value: @pin.id %> 
+    <% end %>
+  </div>
   
   <div class = "form-group"> 
-    <a href="/" class="btn btn-default">
+    <a href="/" class="btn">
       <i class="fa fa-hand-o-left"></i>
-      Back to Home
+      Back
       </a>
     <%= f.submit(class: "btn btn-danger") %>
   </div>

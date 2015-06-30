@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  <%= @board.name %>
+</h1>
+<hr />
+<%= render partial: "shared/pins_list" %>
+
+<%= link_to boards_path, html_options = {class: "btn"} do %>
+	<i class="fa fa-hand-o-left"></i>
+	Back
+<% end %>
+|
+<%= link_to edit_board_path(@board), html_options = {class: "btn"} do  %> 
+	<i class="fa fa-pencil-square-o"></i>
+    Edit
+<% end %>
+       

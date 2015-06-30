@@ -3,25 +3,47 @@
 <head>
   <title>Coder Pinterest</title>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <div class="container">
-  	<% unless session[:user_id].nil? %>
-  		<div class="user pull-right">
-  			<h4>
-  				<% user_name = current_user.first_name + " " +  current_user.last_name %>
-  				<%= "Hi, #{user_name} !" %>
-          |
-          <%= link_to 'Edit', edit_user_path(current_user) %> |
-          |
-          <%= link_to "Logout", logout_path(current_user), method: :delete %>
-  			</h4>
-  		</div>
+  	<% if logged_in? %>
+    <div class="collapse navbar-collapse pull-right">
+    <ul class="nav navbar-nav">
+
+      <li><%= link_to "Home", root_path %></li>    
+
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> My Boards <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <% current_user.boards.each do |board| %>
+              <li><%= link_to "#{board.name}", board_path(board.id) %></li>
+            <% end %>
+        </ul>
+        </li>
+        <li><%= link_to "Add a Pin", new_pin_path %></li>
+        <li><%= link_to "Add a Board", new_board_path %></li>
+      <li class="dropdown user">
+        <% user_name = current_user.first_name + " " +  current_user.last_name %>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <%= "#{user_name}" %> <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li><%= link_to 'Edit', edit_user_path(current_user) %>
+            </li>
+            <li class="divider"></li>
+            <li><%= link_to "Logout", logout_path(current_user), method: :delete %></li>
+        </ul>
+      
+      </li>
+
+
+    </div>    
   	<% end %>
     <%= yield %>
+    <%= debug(params) if Rails.env.development? %>
   </div>
 </body>
 </html>

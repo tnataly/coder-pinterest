@@ -3,44 +3,6 @@
   <h3>A Collection of Ruby on Rails Resources for Beginners</h3>
 </div>
 <hr/>
-<div class="pins">
-  <% @pins.each_slice(3) do |row| %>
-    <div class="row">
-      <% row.each do |pin| %>      
-        <div class="pin-container col-md-4">
-          <div class="pin">
-            <div class="pin-header row">
-              <div class="logo-thumbnail col-xs-3">
-                  <% if pin.image_file_name.nil? %>
-                      <% if "#{pin.category.name}" == "rails" %>
-                      <%= image_tag('rails-logo-thumbnail.png') %>
-                    <% elsif "#{pin.category.name}" == "ruby" %>
-                      <%= image_tag('ruby-logo-thumbnail.png') %>
-                    <% end %>      
-                  <% else %>
-                   <%= image_tag pin.image.url(:thumb) %>
-                  <% end %>
-              </div>
-              <div class="col-xs-7">
-                <h4>
-                  <%= link_to "#{pin.title}", pin_by_name_path(slug: pin.slug), html_options = {target: "_blank", class: "url"} %>
-                </h4>
-                  <%= link_to "#{pin.url}", "#{pin.url}", html_options = {target: "_blank", class: "url"} %>
-              </div>
-              <div class="col-xs-2">
-                <%= link_to repin_path(pin.id), class: "btn btn-info", method: "post" do %>
-                  <i class="fa fa-thumb-tack"></i>
-                <%end %>
-
-              </div>
-            </div>
-            <hr/>
-            <p class="text"><%= "#{pin.text}" %></p>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+<%= render partial: "shared/pins_list" %>
 
 <hr/>

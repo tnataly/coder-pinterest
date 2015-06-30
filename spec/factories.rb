@@ -14,6 +14,10 @@ FactoryGirl.define do
 		"slug#{n}"
 	end
 	
+	factory :board do
+		name "My Pins!"
+	end
+
 	factory :user do
 		sequence(:email) { |n| "coder#{n}@skillcrush.com" }
 		first_name "Janny"
@@ -21,9 +25,9 @@ FactoryGirl.define do
 		password "secret"
 
 		after(:create) do |user|
+			user.boards << FactoryGirl.create(:board)
 			3.times do
-	
-				user.pinnings.create(pin: FactoryGirl.create(:pin))
+				user.pinnings.create(pin: FactoryGirl.create(:pin), board: user.boards.first)
 			end
 		end
 	end

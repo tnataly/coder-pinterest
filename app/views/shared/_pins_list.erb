@@ -1,0 +1,40 @@
+<div class="pins">
+  <% @pins.each_slice(3) do |row| %>
+    <div class="row">
+      <% row.each do |pin| %>      
+        <div class="pin-container col-md-4">
+          <div class="pin">
+            <div class="pin-header row">
+              <div class="logo-thumbnail col-xs-3">
+                  <% if pin.image_file_name.nil? %>
+                      <% if "#{pin.category.name}" == "rails" %>
+                      <%= image_tag('rails-logo-thumbnail.png') %>
+                    <% elsif "#{pin.category.name}" == "ruby" %>
+                      <%= image_tag('ruby-logo-thumbnail.png') %>
+                    <% end %>      
+                  <% else %>
+                   <%= image_tag pin.image.url(:thumb) %>
+                  <% end %>
+              </div>
+              <div class="col-xs-7">
+                <h4>
+                  <%= link_to "#{pin.title}", pin_by_name_path(slug: pin.slug), html_options = {target: "_blank", class: "url"} %>
+                </h4>
+                  <%= link_to "#{pin.url}", "#{pin.url}", html_options = {target: "_blank", class: "url"} %>
+              </div>
+              <div class="col-xs-2">
+                
+                
+
+              </div>
+            </div>
+
+            <p class="text"><%= "#{pin.text}" %></p>
+            <hr/>            
+            <%= render partial: "shared/repin_form", locals: {pin: pin} %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

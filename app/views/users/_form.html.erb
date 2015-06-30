@@ -28,6 +28,8 @@
     <%= f.text_field :password %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= link_to "Back", :back, html_options = {class: "btn"} %>
+    <%= f.submit nil, class: "btn btn-danger" %>
+
   </div>
 <% end %>
