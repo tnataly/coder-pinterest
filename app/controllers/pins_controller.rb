@@ -22,6 +22,7 @@ class PinsController < ApplicationController
   def new
     @pin = Pin.new
     @pin.pinnings.build
+    @pinnable_boards = current_user.pinnable_boards
   end
 
   def create

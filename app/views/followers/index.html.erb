@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+<div class="header">
+<h1>Your Followers</h1>
+</div>
+<hr/>
+
+<div class="">
+    <% @followed.each do |follow| %>
+      <div class="col-md-3 panel panel-default"> 
+        <div class="panel-heading">
+          <%= follow.first_name + " " + follow.last_name  %>
+        </div>
+        <div class="panel-body">
+          <h4><span class="label label-info"><%= follow.boards.count %> </span> Boards:</h4>    
+          <ul>
+            <% follow.boards.each do |board| %>
+              <li> <%= link_to board.name, board_path(board.id) %></li>
+
+            <% end %>
+          </ul> 
+        </div>
+        <div class="panel-footer"> 
+          <%= link_to follower_path(Follower.where("user_id = ? AND follower_id = ?", follow.id, current_user.id).first.id), html_options = {class: "btn"}, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i class="fa fa-user-times"></i>
+            Unfolow
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+</div>
+
+
+<hr />
+
+<%= link_to new_follower_path, html_options = {class: "btn"}  do %>
+  <i class="fa fa-search"></i>
+  Find People To Follow 
+<% end %>

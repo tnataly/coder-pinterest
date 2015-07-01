@@ -10,9 +10,11 @@
 	<i class="fa fa-hand-o-left"></i>
 	Back
 <% end %>
-|
-<%= link_to edit_board_path(@board), html_options = {class: "btn"} do  %> 
-	<i class="fa fa-pencil-square-o"></i>
-    Edit
+<% if @board.user == current_user %>
+	|
+	<%= link_to edit_board_path(@board), html_options = {class: "btn"} do  %> 
+		<i class="fa fa-pencil-square-o"></i>
+    	Edit
+	<% end %>
 <% end %>
        

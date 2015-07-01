@@ -1,0 +1,36 @@
+<%= form_for(@follower, html: {class: "col-md-3 panel panel-default"}) do |f| %>
+  <% if @follower.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@follower.errors.count, "error") %> prohibited this follower from being saved:</h2>
+
+      <ul>
+      <% @follower.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!--<div class="modal-dialog"><div class="modal-control"> -->
+    <%= f.hidden_field :user_id, value: user_to_follow.id %>
+    <%= f.hidden_field :follower_id, value: current_user.id %>
+    <div class="panel-heading">
+      <%= f.label :user_name, "#{user_to_follow.full_name}", class: "" %>
+    </div>
+    <div class="panel-body">
+      <h4><span class="label label-info"><%= user_to_follow.boards.count %> </span> Boards:</h4>    
+      <ul>
+        <% user_to_follow.boards.each do |board| %>
+          <li> <%= link_to board.name, board_path(board.id) %></li>
+        <% end %>
+      </ul> 
+    </div>
+    <div class="panel-footer">
+      <%= f.button :submit, class: "btn pinterest-theme-button" do %>
+        <i class="fa fa-users"></i>
+        Follow!
+      <% end %>
+    </div>
+
+
+<% end %>

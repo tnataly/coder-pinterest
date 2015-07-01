@@ -15,6 +15,16 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+
+    <% unless @followers.nil? %>
+      <%= f.label :followers, "Followers who may pin" %><br>
+      <%= f.fields_for(:board_pinners, BoardPinner.new) do |bp| %>
+        <div class="field"> 
+          <%= bp.collection_select(:user_id, @followers, :id, :full_name, include_blank: true ) %> 
+        </div>       
+      <% end %>
+    <% end %>
+  
   <div class="field">
     <%= f.hidden_field :user_id, value: current_user.id %>
   </div>

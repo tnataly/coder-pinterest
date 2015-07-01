@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :followers, except: [:edit, :update, :show]
+
   resources :boards
 
   get 'signup' => "users#new", as: 'signup'

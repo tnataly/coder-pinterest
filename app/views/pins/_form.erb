@@ -1,6 +1,8 @@
 <%= form_for(@pin, html: {class: "form-horizontal"}) do |f| %>
+  <h3> Check Pin's data, please  </h3>
+  <hr />
  <fieldset>
-  <legend> Check Pin's data, please  </legend>
+
   <%= f.hidden_field :user_id, value: current_user.id %>
   <div class = "form-group">
     <div class = "col-md-2"> <%= f.label(:title, "Title", html: {class: "control-label"}) %> </div>
@@ -37,7 +39,7 @@
     <%= f.fields_for(:pinnings, Pinning.new) do |p| %>
 
           <% # value: @pin.pinnings.find_by_user_id(current_user.id).board %>
-      <%= p.collection_select(:board_id, current_user.boards, :id, :name ) %> 
+      <%= p.collection_select(:board_id, @pinnable_boards, :id, :name ) %> 
 
 
       <%= p.hidden_field :user_id, value: current_user.id %> 

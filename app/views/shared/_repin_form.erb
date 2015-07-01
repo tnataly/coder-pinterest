@@ -2,7 +2,7 @@
 	<%= form_for(pin, action: repin_path(pin), html: {class: "form-horizontal"}) do |f| %>
 		<%= f.fields_for(:pinnings, Pinning.new) do |p| %>
 			<%= p.label("Board") %>
-		    <%= p.collection_select(:board_id, current_user.boards, :id, :name ) %> 
+		    <%= p.collection_select(:board_id, current_user.pinnable_boards, :id, :name ) %> 
       		<%= p.hidden_field :user_id, value: current_user.id %> 
 		<% end # f.fields_for%>
       	<%= f.button :submit, class: "btn pinterest-theme-button" do %>

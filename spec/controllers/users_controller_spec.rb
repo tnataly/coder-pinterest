@@ -126,7 +126,8 @@ RSpec.describe UsersController, type: :controller do
 
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { first_name: "Emily"}
+        #skip("Add a hash of attributes valid for your model")
       }
 
     it "redirects to login if user is not signed in" do
@@ -140,7 +141,7 @@ RSpec.describe UsersController, type: :controller do
         post :authenticate, {email: @user.email, password: @user.password}        
         put :update, {:id => user.to_param, :user => new_attributes}, valid_session
         user.reload
-        skip("Add assertions for updated state")
+        #skip("Add assertions for updated state")
       end
 
       it "assigns the requested user as @user" do

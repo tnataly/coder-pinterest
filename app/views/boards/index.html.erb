@@ -1,29 +1,42 @@
 <p id="notice"><%= notice %></p>
+<div class="header">
+  <h1>All Boards</h1>
+  <h3>A Collection of Boards You can pin to</h3>
+</div>
+<hr/>
 
-<h1>Listing Boards</h1>
+  <% @boards.each do |board| %>
+    <div class="col-md-3 panel panel-default"> 
+      <div class="panel-heading">
+         <%= board.name %>
+      </div>
+      <div class="panel-body">
+        <p> <span class="label label-info">user</span>  <%= board.user.full_name %></p>
+        <p> <span class="label label-info">pins</span>  <%= board.pins.count %></p>
+      </div>
+      <div class="panel-footer">  
+        <%= link_to board, html_options = {class: "btn"} do %>
+          <i class="fa fa-eye"></i>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+        <% end %>
+        <% "  |  " %>
+        <%= link_to edit_board_path(board), html_options = {class: "btn"} do %>
+          <i class="fa fa-pencil-square-o"></i>
 
-  <tbody>
-    <% @boards.each do |board| %>
-      <tr>
-        <td><%= board.name %></td>
-        <td><%= board.user %></td>
-        <td><%= link_to 'Show', board %></td>
-        <td><%= link_to 'Edit', edit_board_path(board) %></td>
-        <td><%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <% end %>
+        <% "  |  " %>
+        <%= link_to board, html_options = {class: "btn"}, method: :delete, data: { confirm: 'Are you sure?'} do %>
+          <i class="fa fa-trash-o"></i>
+
+        <% end %>
+      </div>  
+    </div>
     <% end %>
-  </tbody>
-</table>
 
-<br>
 
-<%= link_to 'New Board', new_board_path %>
+<hr />
+
+<%= link_to new_board_path, html_options = {class: "btn"} do %>
+  <i class="fa fa-plus-square-o"></i>
+  Add board
+<% end %>
