@@ -23,7 +23,7 @@ You are encouraged to create an account, but if you want to get a feel of Coder 
 * Paperclip gem and ImageMagic lib to deal with images
 * Amazon ASW for storing images
 * RSpec
-* Factory_girl_rails and Shoulda Matchers gems used to support TDD
+* "FactoryGirl Rails" and "Shoulda Matchers" gems used to support TDD
 
 === Tests
 Run the test suite with <tt>rake</tt> or <tt>rspec spec</tt>
