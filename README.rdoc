@@ -1,28 +1,31 @@
-== README
+=== Coder Pinterest
+This is a Pinterest style resource sharing application for coders. It's features include:
+* Sign up / sign in and login required for access to main app
+* Encrypted passwords and working with session params
+* Pins with images & categories
+* Pinboards for different purposes
+* Re-pin function for existing pins
+* Users can follow each other
+* Collaboration features on pinboards
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+=== See Coder Pinterest on Heroku {here}[https://coder-pinterest.herokuapp.com] 
+You are encouraged to create an account, but if you want to get a feel of Coder Pinterest first, you may log in with any of the following emails (all having a password of <tt>password</tt>) and take a look around with some seed data:
+* janesmith@example.com
+* johnsmith@example.com
+* johndoe@example.com
 
-Things you may want to cover:
+=== Technologies
+* Ruby 2.2.2, Rails 4.2.0
+* PostgreSQL
+* Free Bootstrap theme from {Bootswatch}[http://bootswatch.com]
+* Bcrypt gem for passwords security
+* Paperclip gem and ImageMagic lib to deal with images
+* Amazon ASW for storing images
+* RSpec
+* Factory_girl_rails and Shoulda Matchers gems used to support TDD
 
-* Ruby version
+=== Tests
+Run the test suite with <tt>rake</tt> or <tt>rspec spec</tt>
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+--- 
+Coder Pinterest is a test-driven development of a Pinterest clone. It was created for learning purpose. 
