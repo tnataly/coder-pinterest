@@ -21,7 +21,7 @@ You are encouraged to create an account, but if you want to get a feel of Coder 
 * Free Bootstrap theme from {Bootswatch}[http://bootswatch.com]
 * Bcrypt gem for passwords security
 * Paperclip gem and ImageMagic lib to deal with images
-* Amazon ASW for storing images
+* Amazon AWS for storing images
 * RSpec
 * "FactoryGirl Rails" and "Shoulda Matchers" gems used to support TDD
 
